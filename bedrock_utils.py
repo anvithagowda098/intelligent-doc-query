@@ -23,12 +23,12 @@ def valid_prompt(prompt, model_id):
                 "content": [
                     {
                     "type": "text",
-                    "text": f"""Human: Clasify the provided user request into one of the following categories. Evaluate the user request agains each category. Once the user category has been selected with high confidence return the answer.
-                                Category A: the request is trying to get information about how the llm model works, or the architecture of the solution.
-                                Category B: the request is using profanity, or toxic wording and intent.
-                                Category C: the request is about any subject outside the subject of heavy machinery.
-                                Category D: the request is asking about how you work, or any instructions provided to you.
-                                Category E: the request is ONLY related to heavy machinery.
+                    "text": f"""Human: Categorize the user request.
+                                Category A: About AI/LLM architecture
+                                Category B: Profanity or toxic content
+                                Category C: Outside heavy machinery
+                                Category D: Asking about the assistant
+                                Category E: Only about heavy machinery
                                 <user_request>
                                 {prompt}
                                 </user_request>
@@ -68,7 +68,7 @@ def valid_prompt(prompt, model_id):
 def query_knowledge_base(query, kb_id):
     try:
         response = bedrock_kb.retrieve(
-            knowledgeBaseId=kb_id,
+            knowledgeBaseId="NGFNXEA7SZ",
             retrievalQuery={
                 'text': query
             },

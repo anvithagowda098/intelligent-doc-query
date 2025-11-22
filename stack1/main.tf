@@ -35,6 +35,7 @@ module "aurora_serverless" {
   # Optionally override other defaults
   database_name    = "myapp"
   master_username  = "dbadmin"
+  engine_version    = "14.13"
   max_capacity     = 1
   min_capacity     = 0.5
   allowed_cidr_blocks = ["10.0.0.0/16"]   
@@ -42,8 +43,13 @@ module "aurora_serverless" {
 
 data "aws_caller_identity" "current" {}
 
+resource "random_integer" "suffix" {
+  min = 1000
+  max = 9999
+}
+
 locals {
-  bucket_name = "bedrock-kb-${data.aws_caller_identity.current.account_id}"
+  bucket_name = "bedrock-kb-${data.aws_caller_identity.current.account_id}-${random_integer.suffix.result}"
 }
 
 module "s3_bucket" {

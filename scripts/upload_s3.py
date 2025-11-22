@@ -32,9 +32,9 @@ if __name__ == "__main__":
     folder_path = "spec-sheets"
     
     # S3 bucket name
-    bucket_name = "bedrock-kb-975050171524"  # Replace with your actual bucket name
+    bucket_name = "bedrock-kb-422471551086-5303"  # Replace with your actual bucket name
     
     # S3 prefix (optional)
-    prefix = "spec-sheets" 
+    prefix = "spec-sheets/" 
     
     upload_files_to_s3(folder_path, bucket_name, prefix)
